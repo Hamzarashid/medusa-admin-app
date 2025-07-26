@@ -2,17 +2,18 @@ import { loadEnv, defineConfig , Modules, ContainerRegistrationKeys } from '@med
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
-
 const DATABASE_URL = `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
+
+console.log(`Database URL chunks: ${DATABASE_URL}`)
+console.log(`Database URL: ${process.env.DATABASE_URL}`)
 
 export default defineConfig({
   projectConfig: {
-    databaseUrl: process.env.DATABASE_URL,
+    databaseUrl: DATABASE_URL,
     databaseDriverOptions:{
       connection:{
         ssl:{
-          rejectUnauthorized: true,
-          ca: process.env.CACERT,
+          rejectUnauthorized: false,
         }
       }
     },
