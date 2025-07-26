@@ -3,11 +3,18 @@ import { loadEnv, defineConfig , Modules, ContainerRegistrationKeys } from '@med
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
 
-const DATABASE_URL = `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}?sslmode=require`
+const DATABASE_URL = `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
 
 export default defineConfig({
   projectConfig: {
-    databaseUrl: process.env.DATABASE_URL,
+    databaseUrl: DATABASE_URL,
+    databaseDriverOptions:{
+      connection:{
+        ssl:{
+          rejectUnauthorized:false,
+        }
+      }
+    },
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
@@ -16,6 +23,7 @@ export default defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
   },
+  
 
 
   plugins: [
