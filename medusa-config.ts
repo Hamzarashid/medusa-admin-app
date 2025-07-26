@@ -22,27 +22,13 @@ try {
   dotenv.config({ path: process.cwd() + "/" + ENV_FILE_NAME });
 } catch (e) {}
 
-const DB_USERNAME = process.env.DB_USERNAME;
-const DB_PASSWORD = process.env.DB_PASSWORD;
-const DB_HOST = process.env.DB_HOST;
-const DB_PORT = process.env.DB_PORT;
-const DB_DATABASE = process.env.DB_DATABASE;
 
-const DATABASE_URL = `postgresql://${encodeURIComponent(DB_USERNAME!)}:${encodeURIComponent(DB_PASSWORD!)}@${encodeURIComponent(DB_HOST!)}:${encodeURIComponent(DB_PORT!)}/${encodeURIComponent(DB_DATABASE!)}`
-
-console.log('DB Config:', {
-  DB_USERNAME,
-  DB_HOST,
-  DB_PORT,
-  DB_DATABASE,
-  DATABASE_URL: DATABASE_URL 
-});
 console.log(`Database URL: ${process.env.DB_URL}`)
-console.log(`Database sssl: ${process.env.DB_CA}`)
+
 
 export default defineConfig({
   projectConfig: {
-    databaseUrl: DATABASE_URL,
+    databaseUrl: process.env.DB_URL,
     databaseDriverOptions:{
       connection:{
         ssl:{
