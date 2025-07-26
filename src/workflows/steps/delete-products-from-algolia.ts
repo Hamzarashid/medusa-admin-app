@@ -33,7 +33,7 @@ import AlgoliaModuleService from "../../modules/algolia/service"
       if (!existingRecords) {
         return
       }
-      const algoliaModuleService = container.resolve(ALGOLIA_MODULE)
+      const algoliaModuleService = container.resolve<AlgoliaModuleService>(ALGOLIA_MODULE)
       
       await algoliaModuleService.indexData(
         existingRecords as unknown as Record<string, unknown>[],
