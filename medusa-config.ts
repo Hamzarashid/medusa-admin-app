@@ -9,7 +9,7 @@ console.log(`Database URL: ${process.env.DATABASE_URL}`)
 
 export default defineConfig({
   projectConfig: {
-    databaseUrl: DATABASE_URL,
+    databaseUrl: process.env.DATABASE_URL,
     databaseDriverOptions:{
       connection:{
         ssl:{
