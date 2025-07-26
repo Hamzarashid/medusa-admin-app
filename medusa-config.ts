@@ -28,15 +28,21 @@ const DB_HOST = process.env.DB_HOST;
 const DB_PORT = process.env.DB_PORT;
 const DB_DATABASE = process.env.DB_DATABASE;
 
-const DATABASE_URL = `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
+const DATABASE_URL = `postgresql://${encodeURIComponent(DB_USERNAME!)}:${encodeURIComponent(DB_PASSWORD!)}@${encodeURIComponent(DB_HOST!)}:${encodeURIComponent(DB_PORT!)}/${encodeURIComponent(DB_DATABASE!)}`
 
-console.log(`Database URL chunks: ${DATABASE_URL}`)
+console.log('DB Config:', {
+  DB_USERNAME,
+  DB_HOST,
+  DB_PORT,
+  DB_DATABASE,
+  DATABASE_URL: DATABASE_URL 
+});
 console.log(`Database URL: ${process.env.DATABASE_URL}`)
 console.log(`Database sssl: ${process.env.DB_CA}`)
 
 export default defineConfig({
   projectConfig: {
-    databaseUrl: process.env.DATABASE_URL,
+    databaseUrl: DATABASE_URL,
     databaseDriverOptions:{
       connection:{
         ssl:{
