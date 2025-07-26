@@ -32,6 +32,7 @@ const DATABASE_URL = `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB
 
 console.log(`Database URL chunks: ${DATABASE_URL}`)
 console.log(`Database URL: ${process.env.DATABASE_URL}`)
+console.log(`Database sssl: ${process.env.DB_CA}`)
 
 export default defineConfig({
   projectConfig: {
@@ -39,7 +40,8 @@ export default defineConfig({
     databaseDriverOptions:{
       connection:{
         ssl:{
-          rejectUnauthorized: false,
+          rejectUnauthorized: true,
+          ca: process.env.DB_CA,
         }
       }
     },
