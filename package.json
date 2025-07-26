@@ -12,7 +12,6 @@
     "headless",
     "medusa"
   ],
-  
   "scripts": {
     "build": "medusa build",
     "seed": "medusa exec ./src/scripts/seed.ts",
@@ -44,6 +43,7 @@
     "@variablevic/mollie-payments-medusa": "^0.0.13",
     "algoliasearch": "^5.34.1",
     "awilix": "^8.0.1",
+    "dotenv": "^17.2.1",
     "jsonwebtoken": "^9.0.2",
     "pdfkit": "^0.15.1",
     "pg": "^8.13.0",

@@ -1,8 +1,34 @@
-import { loadEnv, defineConfig , Modules, ContainerRegistrationKeys } from '@medusajs/framework/utils'
+import { defineConfig , Modules, ContainerRegistrationKeys } from '@medusajs/framework/utils'
+const dotenv = require("dotenv");
 
-loadEnv(process.env.NODE_ENV || 'development', process.cwd())
+let ENV_FILE_NAME = "";
+switch (process.env.NODE_ENV) {
+  case "production":
+    ENV_FILE_NAME = ".env.production";
+    break;
+  case "staging":
+    ENV_FILE_NAME = ".env.staging";
+    break;
+  case "test":
+    ENV_FILE_NAME = ".env.test";
+    break;
+  case "development":
+  default:
+    ENV_FILE_NAME = ".env";
+    break;
+}
 
-const DATABASE_URL = `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
+try {
+  dotenv.config({ path: process.cwd() + "/" + ENV_FILE_NAME });
+} catch (e) {}
+
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = process.env.DB_PORT;
+const DB_DATABASE = process.env.DB_DATABASE;
+
+const DATABASE_URL = `postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
 
 console.log(`Database URL chunks: ${DATABASE_URL}`)
 console.log(`Database URL: ${process.env.DATABASE_URL}`)
