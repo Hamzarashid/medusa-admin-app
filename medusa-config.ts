@@ -32,8 +32,7 @@ export default defineConfig({
     databaseDriverOptions:{
       connection:{
         ssl:{
-          rejectUnauthorized: true,
-          ca: process.env.DB_CA,
+          rejectUnauthorized: false,
         }
       }
     },
