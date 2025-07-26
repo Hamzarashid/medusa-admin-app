@@ -7,7 +7,7 @@ const DATABASE_URL = `postgresql://${process.env.DB_USERNAME}:${process.env.DB_P
 
 export default defineConfig({
   projectConfig: {
-    databaseUrl: DATABASE_URL,
+    databaseUrl: process.env.DATABASE_URL,
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
