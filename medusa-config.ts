@@ -37,7 +37,7 @@ console.log('DB Config:', {
   DB_DATABASE,
   DATABASE_URL: DATABASE_URL 
 });
-console.log(`Database URL: ${process.env.DATABASE_URL}`)
+console.log(`Database URL: ${process.env.DB_URL}`)
 console.log(`Database sssl: ${process.env.DB_CA}`)
 
 export default defineConfig({
