@@ -22,13 +22,22 @@ try {
   dotenv.config({ path: process.cwd() + "/" + ENV_FILE_NAME });
 } catch (e) {}
 
+const DB_USERNAME = process.env.DB_USERNAME
+const DB_PASSWORD = process.env.DB_PASSWORD
+const DB_HOST = process.env.DB_HOST
+const DB_PORT = process.env.DB_PORT
+const DB_DATABASE = process.env.DB_DATABASE
 
-console.log(`Database URL: ${process.env.DB_URL}`)
+const DATABASE_URL = 
+  `postgres://${DB_USERNAME}:${DB_PASSWORD}` + 
+  `@${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
+
+console.log(`Database URL: ${DATABASE_URL}`)
 
 
 export default defineConfig({
   projectConfig: {
-    databaseUrl: process.env.DB_URL,
+    databaseUrl: DATABASE_URL,
     workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
     databaseDriverOptions: {
       connection: {
