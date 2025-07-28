@@ -29,14 +29,16 @@ console.log(`Database URL: ${process.env.DB_URL}`)
 export default defineConfig({
   projectConfig: {
     databaseUrl: process.env.DB_URL,
-    databaseDriverOptions:{
-      connection:{
-        ssl:{
+    workerMode: process.env.MEDUSA_WORKER_MODE as "shared" | "worker" | "server",
+    databaseDriverOptions: {
+      connection: {
+        ssl: {
           rejectUnauthorized: false,
         }
       }
     },
     http: {
+      port: parseInt(process.env.PORT || "9000", 10),
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
       authCors: process.env.AUTH_CORS!,
@@ -44,8 +46,6 @@ export default defineConfig({
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     },
   },
-  
-
 
   plugins: [
     {
