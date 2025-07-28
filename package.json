@@ -13,7 +13,8 @@
     "medusa"
   ],
   "scripts": {
-    "build": "medusa build",
+    "build": "medusa build && yarn copy-assets",
+    "copy-assets": "copyfiles -u 4 'src/modules/documents/assets/**/*.{json,ttf}' .medusa/server/src/modules/documents/assets",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "start": "cd .medusa/server && yarn install && yarn predeploy && yarn run start",
     "dev": "medusa develop",
@@ -60,6 +61,7 @@
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.2.25",
+    "copyfiles": "^2.4.1",
     "jest": "^29.7.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
