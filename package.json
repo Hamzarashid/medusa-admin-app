@@ -16,7 +16,7 @@
     "build": "medusa build && yarn copy-assets",
     "copy-assets": "copyfiles -u 4 'src/modules/documents/assets/**/*.{json,ttf}' .medusa/server/src/modules/documents/assets",
     "seed": "medusa exec ./src/scripts/seed.ts",
-    "start": "cd .medusa/server && yarn install && yarn predeploy && yarn run start",
+    "start": "cd .medusa/server && yarn install && yarn predeploy && medusa start",
     "dev": "medusa develop",
     "predeploy": "medusa db:migrate",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
