@@ -38,7 +38,6 @@ export default defineConfig({
       }
     },
     http: {
-      port: parseInt(process.env.PORT || "9000", 10),
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
       authCors: process.env.AUTH_CORS!,
